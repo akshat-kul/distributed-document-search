@@ -10,4 +10,7 @@ redis_client = redis.Redis(
 
 
 async def get_redis():
-    return redis_client
+    try:
+        yield redis_client
+    except Exception:
+        raise

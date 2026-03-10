@@ -24,8 +24,9 @@ AsyncSessionLocal = sessionmaker(
 )
 
 async def get_db():
-    try:
-        async with AsyncSessionLocal() as session:
+    async with AsyncSessionLocal() as session:
+        try:
             yield session
-    except Exception as e:
-        print(f"Exception occurred {e}")        
+        except Exception:
+            await session.rollback()
+            raise
