@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
     # Redis check
     await redis_client.ping()
     print("Redis connected")
-
+    
     yield
 
     print("Shutting down service")

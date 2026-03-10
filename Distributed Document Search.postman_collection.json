@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "e332bd42-2a1b-446c-bc9b-b1219c62d703",
+    "name": "Distributed Document Search",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "30817750",
+    "_collection_link": "https://go.postman.co/collection/30817750-e332bd42-2a1b-446c-bc9b-b1219c62d703?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Tenant",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"sample tenant\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/tenants",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tenants"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Document",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"title 23\",\n  \"content\": \"content 404\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/tenants/1/documents",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tenants",
+            "1",
+            "documents"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Document with Query",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/tenants/1/search?q=titla",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tenants",
+            "1",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "titla"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Document with document_id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/tenants/1/documents/fb8855e7-7502-4407-a0a0-dc1a84ca0b67",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tenants",
+            "1",
+            "documents",
+            "fb8855e7-7502-4407-a0a0-dc1a84ca0b67"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Document",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/tenants/1/documents/fb8855e7-7502-4407-a0a0-dc1a84ca0b67",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tenants",
+            "1",
+            "documents",
+            "fb8855e7-7502-4407-a0a0-dc1a84ca0b67"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Server Health Check",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

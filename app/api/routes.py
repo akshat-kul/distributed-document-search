@@ -4,6 +4,8 @@ from uuid import UUID
 
 from app.middleware.rate_limit import rate_limit
 from app.schemas.document import DocumentCreate, DocumentResponse
+from app.schemas.tenant import TenantCreate, TenantResponse
+from app.services.tenant_service import TenantService
 from app.services.document_service import DocumentService
 from app.services.search_service import SearchService
 from app.db.postgres import get_db
@@ -12,6 +14,17 @@ from app.db.postgres import get_db
 router = APIRouter()
 document_service = DocumentService()
 search_service = SearchService()
+tenant_service = TenantService()
+
+@router.post("/tenants", response_model=TenantResponse)
+async def create_tenant(
+    payload: TenantCreate,
+    db: AsyncSession = Depends(get_db)
+):
+
+    tenant = await tenant_service.create_tenant(db, payload)
+
+    return tenant
 
 @router.post("/tenants/{tenant_id}/documents", response_model=DocumentResponse)
 async def create_document(
@@ -40,7 +53,7 @@ async def search_documents(
     
     except Exception as e:
         print(f"Exception Occurred: {e}")
-        raise
+        return []
 
 @router.get("/tenants/{tenant_id}/documents/{doc_id}", response_model=DocumentResponse)
 async def get_document(

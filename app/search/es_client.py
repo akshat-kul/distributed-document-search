@@ -1,5 +1,5 @@
 from elasticsearch import AsyncElasticsearch
 
 es = AsyncElasticsearch(
-    hosts=["http://localhost:9200"]
+    hosts=["http://elasticsearch:9200"]
 )
